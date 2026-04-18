@@ -4,3 +4,6 @@ mangum
 uvicorn
 python-dotenv
 hatchling
+SQLAlchemy
+psycopg2
+alembic
