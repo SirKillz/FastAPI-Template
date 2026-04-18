@@ -1,0 +1,6 @@
+fastapi
+httpx
+mangum
+uvicorn
+python-dotenv
+hatchling
