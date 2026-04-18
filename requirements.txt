@@ -5,5 +5,5 @@ uvicorn
 python-dotenv
 hatchling
 SQLAlchemy
-psycopg2
+psycopg[binary]
 alembic
