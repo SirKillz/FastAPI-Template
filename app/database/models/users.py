@@ -33,8 +33,9 @@ class User(Base):
     is_active: Mapped[bool | None] = mapped_column(Boolean)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
-        default=lambda: datetime.now(UTC)
+        default=lambda: datetime.now(UTC),
+        nullable=True
     )
-    user_metadata: Mapped[dict] = mapped_column(JSON)
+    user_metadata: Mapped[dict] = mapped_column(JSON, nullable=True)
 
     posts: Mapped[list["Post"]] = relationship(back_populates="user")

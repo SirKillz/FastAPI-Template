@@ -8,4 +8,4 @@ class UserRead(BaseModel):
     id: int
     email: str
     is_active: bool | None
-    created_at: datetime
+    created_at: datetime | None
