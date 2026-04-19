@@ -1,48 +1,34 @@
 import os
-import sys
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config, pool
 from alembic import context
+from sqlalchemy import engine_from_config, pool
 
-# --- Ensure app can be imported (src/ layout) ---
-sys.path.append(
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "../src"))
-)
-
-# --- Optional: load .env file (if you are using one) ---
 try:
     from dotenv import load_dotenv
     load_dotenv()
 except ImportError:
-    pass  # dotenv not installed, assume env vars are already set
+    pass
 
-# --- Import your Base and models ---
 from app_name.database.database import Base
-from app_name.database import models  # IMPORTANT: registers models
+from app_name.database import models
 
-# --- Alembic Config ---
 config = context.config
 
-# --- Logging setup ---
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# --- Inject DATABASE_URL from environment ---
 database_url = os.getenv("DATABASE_URL")
 if not database_url:
     raise ValueError("DATABASE_URL environment variable is not set")
 
 config.set_main_option("sqlalchemy.url", database_url)
 
-# --- Metadata for autogenerate ---
 target_metadata = Base.metadata
 
 
 def run_migrations_offline() -> None:
-    """Run migrations in 'offline' mode."""
     url = config.get_main_option("sqlalchemy.url")
-
     context.configure(
         url=url,
         target_metadata=target_metadata,
@@ -55,7 +41,6 @@ def run_migrations_offline() -> None:
 
 
 def run_migrations_online() -> None:
-    """Run migrations in 'online' mode."""
     connectable = engine_from_config(
         config.get_section(config.config_ini_section, {}),
         prefix="sqlalchemy.",
