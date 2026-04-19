@@ -32,6 +32,7 @@ class User(Base):
         DateTime(timezone=True),
         default=lambda: datetime.now(UTC)
     )
+    user_metadata: Mapped[dict] = mapped_column(JSON)
 
     # Relationship (one user -> many posts)
     posts: Mapped[list[Post]] = relationship(back_populates="user")
