@@ -12,6 +12,9 @@ destroy-database:
 connect-db:
 	docker exec -it postgres-db psql -U app_user -d app_db
 
+connect-app:
+	docker exec -it -w /app/app fastapi-app /bin/bash
+
 # Database migration commands
 migrate-up:
 	@echo "Running database migrations..."
