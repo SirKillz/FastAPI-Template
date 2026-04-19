@@ -11,3 +11,17 @@ destroy-database:
 
 connect-db:
 	docker exec -it postgres-db psql -U app_user -d app_db
+
+# Database migration commands
+migrate-up:
+	@echo "Running database migrations..."
+	docker exec fastapi-app alembic upgrade head
+
+migrate-down-last:
+	@echo "Rolling back database migrations..."
+	docker exec fastapi-app alembic downgrade -1
+
+# use as 'make migrate-revision message="Migration Description"'
+migrate-revision:
+	@echo "Creating new migration revision..."
+	docker exec fastapi-app alembic revision --autogenerate -m "$(message)"
