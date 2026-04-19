@@ -10,8 +10,8 @@ try:
 except ImportError:
     pass
 
-from app_name.database.database import Base
-from app_name.database import models
+from app.database.database import Base
+from app.database import models
 
 config = context.config
 

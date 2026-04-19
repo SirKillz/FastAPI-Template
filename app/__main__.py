@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 
-from app_name.routes import *
+from app.routes import *
 
 # Configure the root Logger
 logger = logging.getLogger("app_logger")
