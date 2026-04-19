@@ -3,7 +3,7 @@ services:
     container_name: fastapi-app
     build:
       context: "../"
-      dockerfile: "./docker/Dockerfile.api"
+      dockerfile: "./docker/Dockerfile.app"
     depends_on:
       db:
         condition: service_healthy
