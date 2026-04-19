@@ -34,4 +34,4 @@ app.add_middleware(
 )
 
 app.include_router(test_router)
-app.include_router(test_db_router)
+app.include_router(users_router)
