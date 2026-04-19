@@ -1,3 +1,5 @@
+name: fastapi-template
+
 services:
   backend:
     container_name: fastapi-app
