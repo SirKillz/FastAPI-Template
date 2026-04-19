@@ -13,7 +13,7 @@ services:
       - "8000:8000"
 
     volumes:
-      - "../src/app_name:/app/app_name"
+      - "../:/app"
 
 # Automatically creates a database with the with the name supplied via the .env
   db:
