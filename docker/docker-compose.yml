@@ -15,6 +15,7 @@ services:
     volumes:
       - "../src/app_name:/app/app_name"
 
+# Automatically creates a database with the with the name supplied via the .env
   db:
     container_name: postgres-db
     build:
