@@ -1,8 +1,8 @@
 import logging
 
 from fastapi import APIRouter, Security
-from app.Auth.current_user import get_current_user
-from app.Auth.models import CurrentUser
+from app.auth.current_user import get_current_user
+from app.auth.models import CurrentUser
 
 test_router = APIRouter()
 logger = logging.getLogger("app_logger") # Configure inside app/__main__.py

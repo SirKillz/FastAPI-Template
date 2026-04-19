@@ -4,8 +4,8 @@ from typing import Any
 from fastapi import Request, HTTPException, Security
 from fastapi.security import HTTPAuthorizationCredentials
 
-from app.Auth.models import CurrentUser
-from app.Auth.security import bearer_scheme
+from app.auth.models import CurrentUser
+from app.auth.security import bearer_scheme
 
 
 def fake_current_user() -> CurrentUser:
