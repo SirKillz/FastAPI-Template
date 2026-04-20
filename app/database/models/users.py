@@ -18,7 +18,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.database.database import Base
+from app.database.session_factory import Base
 
 if TYPE_CHECKING:
     from app.database.models.posts import Post
