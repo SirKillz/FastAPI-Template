@@ -42,4 +42,4 @@ class Post(Base):
         default=lambda: datetime.now(UTC)
     )
 
-    user: Mapped["User"] = relationship(back_populates="posts")
+    user: Mapped["User"] = relationship(back_populates="posts") # refers to the attribute name on User

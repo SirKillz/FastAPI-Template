@@ -37,4 +37,4 @@ class User(Base):
     )
     user_metadata: Mapped[dict] = mapped_column(JSON)
 
-    posts: Mapped[list["Post"]] = relationship(back_populates="user")
+    posts: Mapped[list["Post"]] = relationship(back_populates="user") # Refers to the attribute name on Post
