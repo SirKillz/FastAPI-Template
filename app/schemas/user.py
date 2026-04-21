@@ -14,3 +14,9 @@ class UserUpdate(BaseModel):
     
     email: str | None
     is_active: bool | None
+
+class UserCreate(BaseModel):
+
+    email: str
+    is_active: bool | None
+    # created_at will be handled on backend
