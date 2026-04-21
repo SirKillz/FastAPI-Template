@@ -43,3 +43,6 @@ class Post(Base):
     )
 
     user: Mapped["User"] = relationship(back_populates="posts") # refers to the attribute name on User
+
+    def __repr__(self):
+        return f"Post(id={self.id}, title={self.title})"

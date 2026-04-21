@@ -38,3 +38,6 @@ class User(Base):
     user_metadata: Mapped[dict] = mapped_column(JSON)
 
     posts: Mapped[list["Post"]] = relationship(back_populates="user") # Refers to the attribute name on Post
+
+    def __repr__(self):
+        return f"User(id={self.id}, email={self.email}, is_active={self.is_active})"
