@@ -9,3 +9,8 @@ class UserRead(BaseModel):
     email: str
     is_active: bool | None
     created_at: datetime | None
+
+class UserUpdate(BaseModel):
+    
+    email: str | None
+    is_active: bool | None

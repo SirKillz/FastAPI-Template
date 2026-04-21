@@ -10,15 +10,15 @@ from app.auth.models import CurrentUser
 from app.database.session_factory import get_db
 from app.database.models import User
 
-from app.schemas.user import UserRead
+from app.schemas.user import UserRead, UserUpdate
 
 users_router = APIRouter()
 logger = logging.getLogger("app_logger") # Configure inside app/__main__.py
 
 @users_router.get("/users/{user_id}", response_model=UserRead)
-async def test(user_id: int, db: Session = Depends(get_db), current_user: CurrentUser = Security(get_current_user)):
+async def get_user(user_id: int, db: Session = Depends(get_db), current_user: CurrentUser = Security(get_current_user)):
 
-    logger.info(f"[User: {current_user.username or current_user.sub}] -  Received Request at /users/{id}")
+    logger.info(f"[User: {current_user.username or current_user.sub}] -  Received Request at GET: /users/{user_id}")
 
     stmt = select(User).where(User.id == user_id)
     result = db.execute(stmt).scalar_one_or_none()
@@ -27,3 +27,26 @@ async def test(user_id: int, db: Session = Depends(get_db), current_user: Curren
         raise HTTPException(status_code=404, detail="User not found")
 
     return result
+
+@users_router.put("/users/{user_id}", response_model=UserRead)
+async def update_user(user_id: int, user_data: UserUpdate, db: Session = Depends(get_db), current_user: CurrentUser = Security(get_current_user)):
+
+    logger.info(f"[User: {current_user.username or current_user.sub}] -  Received Request at GET: /users/{user_id}")
+
+    # Model dump the payload
+    # exclude_unset=True means don't assume unprovided values are None and only update provided valus
+    user_data = user_data.model_dump(exclude_unset=True)
+
+    stmt = select(User).where(User.id == user_id)
+    user = db.execute(stmt).scalar_one_or_none()
+
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # loop over payload attributes and update ORM obj atrributes
+    for key, value in user_data.item():
+        setattr(user, key, value)
+    
+    db.commit()
+    return user
+    
