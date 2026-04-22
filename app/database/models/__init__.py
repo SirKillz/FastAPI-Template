@@ -2,3 +2,4 @@
 
 from app.database.models.users import *
 from app.database.models.posts import *
+from app.database.models.songs import *
