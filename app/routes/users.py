@@ -49,7 +49,7 @@ def update_user_songs(user: User, updated_user_songs: list[SongUpdate]) -> User:
             reconciled_songs.append(song)
         else:
             reconciled_songs.append(
-                Song(**song)
+                Song(**incoming)
             )
     
     user.songs = reconciled_songs
