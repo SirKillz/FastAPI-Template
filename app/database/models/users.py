@@ -42,7 +42,7 @@ class User(Base):
     # Second arg: Can be many
     # back_populates: What relationship attribute on the related model points back to me? 
     posts: Mapped[list["Post"]] = relationship("Post", back_populates="user") # Refers to the attribute name on Post
-    songs: Mapped[list["Song"]] = relationship("Song", back_populates="user")
+    songs: Mapped[list["Song"]] = relationship("Song", back_populates="user", cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"User(id={self.id}, email={self.email}, is_active={self.is_active})"
