@@ -30,7 +30,6 @@ class User(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, nullable=False)
     email: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
-    hashed_password: Mapped[str] = mapped_column(nullable=False)
     is_active: Mapped[bool | None] = mapped_column()
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
